@@ -86,6 +86,10 @@ def get_all():
 
     return list(melon_types.values())
 
+melon_types = read_melon_types_from_file("melons.txt")
+# print(get_all())
+print(melon_types)
+
 
 def get_by_id(melon_id):
     """Return a melon, given its ID."""

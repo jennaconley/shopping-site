@@ -6,7 +6,7 @@ put melons in a shopping cart.
 Authors: Joel Burton, Christian Fernandez, Meggie Mahnken, Katie Byers.
 """
 
-from flask import Flask, render_template, redirect, flash
+from flask import Flask, render_template, redirect, flash, session, url_for, request
 import jinja2
 
 import melons
@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 # A secret key is needed to use Flask sessioning features
 
-app.secret_key = 'this-should-be-something-unguessable'
+app.secret_key = 'pAsSworD123!!!!'
 
 # Normally, if you refer to an undefined variable in a Jinja template,
 # Jinja silently ignores this. This makes debugging difficult, so we'll
@@ -43,12 +43,14 @@ def list_melons():
 
 @app.route("/melon/<melon_id>")
 def show_melon(melon_id):
+    # THIS CODE NEEDS TO BE FIXED
     """Return page showing the details of a given melon.
 
     Show all info about a melon. Also, provide a button to buy that melon.
     """
 
-    melon = melons.get_by_id("meli")
+    melon = melons.get_by_id(melon_id)
+    # FIXED CORRECT MELON ID FROM MELONS.HTML?
     print(melon)
     return render_template("melon_details.html",
                            display_melon=melon)
@@ -98,7 +100,9 @@ def add_to_cart(melon_id):
     # - flash a success message
     # - redirect the user to the cart page
 
-    return "Oops! This needs to be implemented!"
+    session['melon number?'] = 1
+    print(session['melon number?'])
+    return render_template("cart.html")
 
 
 @app.route("/login", methods=["GET"])
